@@ -14,15 +14,36 @@ public class QuestionDatabase {
      //because this class optimally will handle exceptions and null pointer exceptions to keep that nonsense from cluttering
     //up the main code.
 
+    //ALL INCOMING ROWS MUST BE FORMATTED WITH
+        //Question, answer1, answer2, answer3, answer4, int for correct choice.
+            //I'm just lazy and don't want to implement more error checking.
 
     //Functions Quick Access--------------------
 
     //dropTable()
         //clears the current working table. Currently required upon application close (still working on it)
-        //CREATE TABLE IF NOT EXISTS for some reason just creates a table regardless if the database exists or not.
+        //CREATE TABLE IF NOT EXISTS for some reason just creates a table regardless if the table exists or not.
 
     //getTable()
-        //Returns the entire working table.
+        //Returns the entire working table. Currently just prints the table, though. [WIP]
+
+    //getEntry(int id)
+        //Returns an Object[] of the specified row in the table. Use this for getting a question for a room.
+        //The id for the row will be the rowid of the entry, which means that passing in 1 will get you the first
+        //row and 2 the second, and so on.
+
+    //setEntry(int id, String[] toEnter) [to be built]
+        //Sets the entry identified by the id to whatever you make toEnter. [WIP]
+
+    //StringSplitter(String toSplit) [to be built]
+        //Returns an Object[]. Some data has commas in the quotes thus requiring manual splitting of the string. [WIP]
+
+    //SetConnection()
+        //Private. Establishes a connection to the database file.
+    
+    //SetClosed()
+        //Private. Needs to be called in every method. Closes the connection
+        //to prevent leaving a query open between method calls.
 
     FileReader fileIn;
     BufferedReader fileReader;
@@ -62,10 +83,63 @@ public class QuestionDatabase {
 
         convertDatabase(fileIn);
     }
+    private void setConnection() {
+        //This try catch block will build the .db (database) file
+        //and then create a table for the questions/answers.
+        try {
+            this.dbCon = DriverManager.getConnection(DATABASE_FILE);
+
+            if(dbCon != null) {
+                DatabaseMetaData mData = this.dbCon.getMetaData();
+                this.stmt = this.dbCon.createStatement();
+                this.stmt.execute(TABLE_CREATE);
+            }
+        }
+        catch(SQLException e) {
+            e.getMessage();
+            System.out.println(e);
+        }
+    }
+    private void setClosed() {
+        try {
+            this.dbCon.close();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+
+        }
+    }
     //-----------------------------------------------
     //Getters
     //-----------------------------------------------
+    public Object[] getEntry(int id) {
+
+        setConnection();
+
+        ResultSet r;
+        Object[] toReturn = new Object[6];
+        try {
+
+            this.dml = this.dbCon.prepareStatement("SELECT rowid, * from questions where rowid = ?");
+            this.dml.setInt(1, id);
+            r = this.dml.executeQuery();
+
+            toReturn[0] = r.getInt("rowid"); toReturn[1] = r.getString("Question");
+            toReturn[2] = r.getString("Answer1"); toReturn[3] = r.getString("Answer2");
+            toReturn[4] = r.getString("Answer3"); toReturn[2] = r.getString("Answer4");
+            toReturn[5] = r.getInt("Correct");
+
+        } catch (SQLException throwables) {
+
+            throwables.printStackTrace();
+
+        }
+        setClosed();
+
+        return toReturn;
+    }
     public void getTable() {
+        setConnection();
         try {
             this.dml = this.dbCon.prepareStatement("SELECT * from questions");
             ResultSet r = this.dml.executeQuery();
@@ -83,13 +157,14 @@ public class QuestionDatabase {
             e.getMessage();
             System.out.println(e);
         }
-
+        setClosed();
     }
 
     //-----------------------------------------------
     //Other Methods
     //-----------------------------------------------
     public void dropTable() {
+        setConnection();
 
         try {
             this.stmt.execute(TABLE_DROP);
@@ -98,7 +173,7 @@ public class QuestionDatabase {
 
             throwables.printStackTrace();
         }
-
+        setClosed();
     }
 
     //Called by the setFile. Will convert the .csv file into a sql compatible database.
@@ -106,23 +181,7 @@ public class QuestionDatabase {
     //the questiondatabase object will automatically convert to sql.
     private void convertDatabase(FileReader fileIn) {
 
-
-        //This try catch block will build the .db (database) file
-        //and then create a table for the questions/answers.
-        try {
-            this.dbCon = DriverManager.getConnection(DATABASE_FILE);
-
-            if(dbCon != null) {
-                DatabaseMetaData mData = this.dbCon.getMetaData();
-                this.stmt = this.dbCon.createStatement();
-                this.stmt.execute(TABLE_CREATE);
-            }
-        }
-        catch(SQLException e) {
-            e.getMessage();
-            System.out.println(e);
-        }
-
+        setConnection();
 
         //This try catch block will read the information from the csv file
         //and then convert to sql.
@@ -173,10 +232,11 @@ public class QuestionDatabase {
                     this.dml.executeUpdate();
                 }
             }
+
         }
         catch(Exception e) {
 
         }
-
+        setClosed();
     }
 }
