@@ -15,6 +15,15 @@ public class QuestionDatabase {
     //up the main code.
 
 
+    //Functions Quick Access--------------------
+
+    //dropTable()
+        //clears the current working table. Currently required upon application close (still working on it)
+        //CREATE TABLE IF NOT EXISTS for some reason just creates a table regardless if the database exists or not.
+
+    //getTable()
+        //Returns the entire working table.
+
     FileReader fileIn;
     BufferedReader fileReader;
     Connection dbCon;
@@ -44,7 +53,6 @@ public class QuestionDatabase {
     public void setFile(String fileName) {
 
         try {
-            //File fileIn = new File(fileName);
             this.fileIn = new FileReader(fileName);
         }
         catch(FileNotFoundException e) {
@@ -63,7 +71,8 @@ public class QuestionDatabase {
             ResultSet r = this.dml.executeQuery();
 
             while(r.next()) {
-                System.out.println(r.getString("Question") + "\t" + r.getString("Answer1")
+                System.out.println(r.getString("Question")
+                                                                      + "\t" + r.getString("Answer1")
                                                                       + "\t" + r.getString("Answer2")
                                                                       + "\t" + r.getString("Answer3")
                                                                       + "\t" + r.getString("Answer4")
@@ -121,18 +130,48 @@ public class QuestionDatabase {
 
             fileReader = new BufferedReader(fileIn);
             String line = "";
+            int lineId;
 
             while((line = fileReader.readLine()) != null) {
 
-                String[] fileValues = line.split(",");
-                this.dml = this.dbCon.prepareStatement("INSERT INTO questions(Question, Answer1, Answer2, Answer3, Answer4, Correct) VALUES(?, ?, ?, ?, ?, ?)");
-                this.dml.setString(1, fileValues[0]);
-                this.dml.setString(2, fileValues[1]);
-                this.dml.setString(3, fileValues[2]);
-                this.dml.setString(4, fileValues[3]);
-                this.dml.setString(5, fileValues[4]);
-                this.dml.setInt(6, Integer.parseInt(fileValues[5]));
-                this.dml.executeUpdate();
+                    //Some of the data is a quote with a comma in it, so it needs to be split manually.
+
+                if(line.contains("\"")) {
+                    int commaPosition1 = 0;
+                    int commaPosition2 = 0;
+                    String splitString;
+                    this.dml = this.dbCon.prepareStatement("INSERT INTO questions(Question, Answer1, Answer2, Answer3, Answer4, Correct) VALUES(?, ?, ?, ?, ?, ?)");
+
+                    for(int i = 1; i < 6; i++) {
+
+                        if(line.charAt(0) == '"') {
+                            commaPosition2 = line.indexOf("\"", 1) + 1;
+                            splitString = line.substring(commaPosition1, commaPosition2);
+                            this.dml.setString(i, splitString);
+                            line = line.substring(commaPosition2 + 1);
+                        }
+                        else {
+                            commaPosition2 = line.indexOf(",");
+                            splitString = line.substring(commaPosition1, commaPosition2);
+                            this.dml.setString(i, splitString);
+                            line = line.substring(commaPosition2 + 1);
+                        }
+                    }
+                    this.dml.setInt(6, Integer.parseInt(line));
+                    this.dml.executeUpdate();
+                }
+                //If there is no quote in the current entry, this can be safely split and added automatically.
+                else {
+                    String[] fileValues = line.split(",");
+                    this.dml = this.dbCon.prepareStatement("INSERT INTO questions(Question, Answer1, Answer2, Answer3, Answer4, Correct) VALUES(?, ?, ?, ?, ?, ?)");
+                    this.dml.setString(1, fileValues[0]);
+                    this.dml.setString(2, fileValues[1]);
+                    this.dml.setString(3, fileValues[2]);
+                    this.dml.setString(4, fileValues[3]);
+                    this.dml.setString(5, fileValues[4]);
+                    this.dml.setInt(6, Integer.parseInt(fileValues[5]));
+                    this.dml.executeUpdate();
+                }
             }
         }
         catch(Exception e) {
