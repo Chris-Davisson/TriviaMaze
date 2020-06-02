@@ -48,6 +48,8 @@ public class QuestionDatabase {
     Statement stmt;          //DDL (really only used for database creation
     PreparedStatement dml;  //data management (insert, update, select)
 
+    int maxQuestions; //The amount of questions currently in the database
+
     final String DATABASE_FILE = "jdbc:sqlite:QuestionDatabase.db";
     final String TABLE_DROP = "DROP TABLE questions";
     final String TABLE_CREATE = "CREATE TABLE IF NOT EXISTS questions (\n"
@@ -60,6 +62,7 @@ public class QuestionDatabase {
             +");";
 
     public QuestionDatabase(String fileName) {
+        this.maxQuestions = 0;
         setFile(fileName);
     }
     //-----------------------------------------------
@@ -145,14 +148,20 @@ public class QuestionDatabase {
         Object[] toReturn = new Object[6];
         try {
 
-            this.dml = this.dbCon.prepareStatement("SELECT rowid, * from questions where rowid = ?");
+            this.dml = this.dbCon.prepareStatement("SELECT * from questions where rowid = ?");
             this.dml.setInt(1, id);
             r = this.dml.executeQuery();
 
-            toReturn[0] = r.getInt("rowid"); toReturn[1] = r.getString("Question");
-            toReturn[2] = r.getString("Answer1"); toReturn[3] = r.getString("Answer2");
-            toReturn[4] = r.getString("Answer3"); toReturn[2] = r.getString("Answer4");
-            toReturn[5] = r.getInt("Correct");
+            try {
+                toReturn[0] = r.getString("Question");
+                toReturn[1] = r.getString("Answer1");
+                toReturn[2] = r.getString("Answer2");
+                toReturn[3] = r.getString("Answer3");
+                toReturn[4] = r.getString("Answer4");
+                toReturn[5] = r.getInt("Correct");
+            } catch(Exception e) {
+                toReturn = new Object[0];
+            }
 
         } catch (SQLException throwables) {
 
@@ -210,7 +219,7 @@ public class QuestionDatabase {
             int lineId;
 
             while((line = fileReader.readLine()) != null) {
-
+                this.maxQuestions++;
                     //Some of the data is a quote with a comma in it, so it needs to be split manually.
 
                 if(line.contains("\"")) {
