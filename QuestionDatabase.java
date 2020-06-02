@@ -25,18 +25,15 @@ public class QuestionDatabase {
         //CREATE TABLE IF NOT EXISTS for some reason just creates a table regardless if the table exists or not.
 
     //getTable()
-        //Returns the entire working table. Currently just prints the table, though. [WIP]
+        //Returns the entire working table's resultSet. CAN RETURN NULL, WATCH OUT
 
     //getEntry(int id)
         //Returns an Object[] of the specified row in the table. Use this for getting a question for a room.
         //The id for the row will be the rowid of the entry, which means that passing in 1 will get you the first
         //row and 2 the second, and so on.
 
-    //setEntry(int id, String[] toEnter) [to be built]
+    //setEntry(int id, String[] toEnter)
         //Sets the entry identified by the id to whatever you make toEnter. [WIP]
-
-    //StringSplitter(String toSplit) [to be built]
-        //Returns an Object[]. Some data has commas in the quotes thus requiring manual splitting of the string. [WIP]
 
     //SetConnection()
         //Private. Establishes a connection to the database file.
@@ -109,6 +106,34 @@ public class QuestionDatabase {
 
         }
     }
+    public void setEntry(int id, String[] toEnter) {
+
+        setConnection();
+
+        try {
+            this.dml = this.dbCon.prepareStatement("UPDATE questions SET Question = ?,"
+                                                    + "\t" + "Answer1 = ?,"
+                                                    + "\t" + "Answer2 = ?,"
+                                                    + "\t" + "Answer3 = ?,"
+                                                    + "\t" + "Answer4 = ?,"
+                                                    + "\t" + "Correct = ?"
+                                                    + "\t" + "WHERE rowid = ?;");
+            this.dml.setString(1, toEnter[0]);
+            this.dml.setString(2, toEnter[1]);
+            this.dml.setString(3, toEnter[2]);
+            this.dml.setString(4, toEnter[3]);
+            this.dml.setString(5, toEnter[4]);
+            this.dml.setInt(6, Integer.parseInt(toEnter[5]));
+            this.dml.setInt(7, id);
+            this.dml.executeUpdate();
+
+        } catch (SQLException throwables) {
+
+            throwables.printStackTrace();
+
+        }
+        setClosed();
+    }
     //-----------------------------------------------
     //Getters
     //-----------------------------------------------
@@ -138,26 +163,19 @@ public class QuestionDatabase {
 
         return toReturn;
     }
-    public void getTable() {
+    public ResultSet getTable() {
         setConnection();
         try {
             this.dml = this.dbCon.prepareStatement("SELECT * from questions");
             ResultSet r = this.dml.executeQuery();
-
-            while(r.next()) {
-                System.out.println(r.getString("Question")
-                                                                      + "\t" + r.getString("Answer1")
-                                                                      + "\t" + r.getString("Answer2")
-                                                                      + "\t" + r.getString("Answer3")
-                                                                      + "\t" + r.getString("Answer4")
-                                                                      + "\t" + r.getInt("Correct"));
-            }
+            return r;
         }
         catch(Exception e) {
             e.getMessage();
             System.out.println(e);
         }
         setClosed();
+        return null;
     }
 
     //-----------------------------------------------
