@@ -17,7 +17,7 @@ public class TriviaGUI extends  JFrame {
     private int playerAnswer = 0;
     private int correctAnswer;
     private Icon playerIcon = new ImageIcon("Killer_Rabbit.png");
-    private Icon room = new ImageIcon("room.jpg");
+
 
 
     private JButton button1;
@@ -408,8 +408,8 @@ public class TriviaGUI extends  JFrame {
             if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button15){
-            potentialMoveLocationX = 0;
-            potentialMoveLocationY = 2;
+            potentialMoveLocationX = 2;
+            potentialMoveLocationY = 0;
             if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button16){
@@ -447,14 +447,21 @@ public class TriviaGUI extends  JFrame {
     //First check if its a valid move
     //then print the questions and answers
 
-
-
     private boolean isValidLocation(int x , int y){
-        try{
-            return !maze.Maze[x][y].isLocked;
-        }catch (Exception e){
-            return false;
+        if(isValidHelper(x,y)){
+            try{
+                return !maze.Maze[x][y].isLocked;
+            }catch (Exception e){
+                return false;
+            }
         }
+        return false;
+    }
+    private boolean isValidHelper(int x , int y){
+        if((x == (playerLocationX - 1) || x == (playerLocationX + 1)) && (y == (playerLocationY - 4) || y == (playerLocationY + 4))){
+            return true;
+        }
+        return false;
     }
 
     private void setBunnyLocation(){
