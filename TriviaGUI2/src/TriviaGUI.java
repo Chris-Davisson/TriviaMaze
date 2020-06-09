@@ -448,14 +448,12 @@ public class TriviaGUI extends  JFrame {
     //then print the questions and answers
 
     private boolean isValidLocation(int x , int y){
-        if(isValidHelper(x,y)){
-            try{
-                return !maze.Maze[x][y].isLocked;
-            }catch (Exception e){
-                return false;
-            }
+        
+        try{
+            return !maze.Maze[x][y].isLocked;
+        }catch (Exception e){
+            return false;
         }
-        return false;
     }
     private boolean isValidHelper(int x , int y){
         if((x == (playerLocationX - 1) || x == (playerLocationX + 1)) && (y == (playerLocationY - 4) || y == (playerLocationY + 4))){
