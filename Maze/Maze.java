@@ -12,7 +12,7 @@ public class Maze {
         this.database = qdb;
         r = new Random();
         //Might not hard code this in the future.
-        this.Maze = new Room[3][3];
+        this.Maze = new Room[4][4];
         this.dimX = 2;  //x dimension (0 based indexing)
         this.dimY = 2;  //y dimension (0 based indexing)
         //Character Location
@@ -29,6 +29,9 @@ public class Maze {
             }
         }
         this.Maze[2][2].exit = true;
+    }
+    public String[] getQuestion(int x, int y) {
+        return this.Maze[x][y].getQuestion();
     }
     //Returns true if the game is still winnable
     public boolean isWinnable(int x, int y) {

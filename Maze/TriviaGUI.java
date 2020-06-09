@@ -68,7 +68,7 @@ public class TriviaGUI extends  JFrame {
         menuBar.add(getHelpMenu());
         this.setJMenuBar(menuBar);
 
-        //Making and hardcodding the locations of everything
+        //Making and hardcoding the locations of everything
         makeQuestionAndAnswerPlace(c);
 
         //Needed for GUI stuff
