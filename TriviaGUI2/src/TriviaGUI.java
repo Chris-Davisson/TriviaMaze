@@ -1,8 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class TriviaGUI extends  JFrame {
 
@@ -19,6 +21,7 @@ public class TriviaGUI extends  JFrame {
     final private Icon playerIcon = new ImageIcon("TriviaGUI2\\resources\\Killer_Rabbit.png");
     final private Icon lockIcon = new ImageIcon("TriviaGUI2\\resources\\icons8-lock-64.png");
     final private Icon roomBkg = new ImageIcon("TriviaGUI2\\resources\\room.jpg");
+    final private Icon GOD = new ImageIcon("TriviaGUI2\\resources\\GOD.jpg");
     private GamePlayCycle GamePlay;
 
 
@@ -126,7 +129,7 @@ public class TriviaGUI extends  JFrame {
         button3.addActionListener(this::actionPerformed);
         c.add(button3);
 
-        button4 = new JButton();
+        button4 = new JButton(GOD);
         button4.setSize(100, 100);
         button4.setLocation(300,425);
         button4.setFont(f);
@@ -348,32 +351,6 @@ public class TriviaGUI extends  JFrame {
             buttHolder[x][y - 1].setVisible(true);
         }
     }
-    //    protected boolean questionDisplay(int x , int y){
-//        if(!isValidLocation(x,y)) return false;
-//        setQuestionAndAnswers(x,y);
-//        return true;
-//    }
-//    private void setQuestionAndAnswers(int x , int y){
-//        questionTextArea.setText(maze.Maze[x][y].Question);
-//        answerTextArea1.setText(maze.Maze[x][y].A1);
-//        answerTextArea2.setText(maze.Maze[x][y].A2);
-//        answerTextArea3.setText(maze.Maze[x][y].A3);
-//        answerTextArea4.setText(maze.Maze[x][y].A4);
-//
-//        correctAnswer = maze.Maze[x][y].CorrectAnswer;
-//        answerTextArea1.setBackground(Color.WHITE);
-//        answerTextArea2.setBackground(Color.WHITE);
-//        answerTextArea3.setBackground(Color.WHITE);
-//        answerTextArea4.setBackground(Color.WHITE);
-//
-//
-//        if(highlightCorrectAnswer == true){
-//            if(correctAnswer == 1 ) answerTextArea1.setBackground(Color.YELLOW);
-//            else if(correctAnswer == 2) answerTextArea2.setBackground(Color.YELLOW);
-//            else if(correctAnswer == 3) answerTextArea3.setBackground(Color.YELLOW);
-//            else if(correctAnswer == 4) answerTextArea4.setBackground(Color.YELLOW);
-//        }
-//    }
 
     //Button Action handlers. Code for when buttons are pressed goes here
     public void actionPerformed(ActionEvent e){
@@ -591,24 +568,6 @@ public class TriviaGUI extends  JFrame {
 
     }
 
-
-    //First check if its a valid move
-    //then print the questions and answers
-
-//    private boolean isValidLocation(int x , int y){
-//
-//        try{
-//            return !maze.Maze[x][y].isLocked;
-//        }catch (Exception e){
-//            return false;
-//        }
-//    }
-//    private boolean isValidHelper(int x , int y){
-//        if((x == (playerLocationX - 1) || x == (playerLocationX + 1)) && (y == (playerLocationY - 4) || y == (playerLocationY + 4))){
-//            return true;
-//        }
-//        return false;
-//    }
     protected void GameOver() {
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
@@ -623,7 +582,7 @@ public class TriviaGUI extends  JFrame {
         button1.setIcon(invis);
         button2.setIcon(invis);
         button3.setIcon(invis);
-        button4.setIcon(invis);
+        //button4.setIcon(invis);
         button5.setIcon(invis);
         button6.setIcon(invis);
         button7.setIcon(invis);
