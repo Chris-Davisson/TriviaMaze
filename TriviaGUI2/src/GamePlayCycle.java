@@ -64,9 +64,10 @@ public class GamePlayCycle {
         }
     }
     protected boolean checkWinnable() {
-        return this.maze.isWinnable(charX, charY);
+        boolean winnable = this.maze.isWinnable(charX, charY);
+        this.maze.clean();
+        return winnable;
     }
-    //Moves the player and the bunny icon. (for some reason not loading atm)
     protected void move(int x, int y) {
         this.charX = x;
         this.charY = y;

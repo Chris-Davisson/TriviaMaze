@@ -39,6 +39,10 @@ public class Maze {
     }
     //Returns true if the game is still winnable
     public boolean isWinnable(int x, int y) {
+
+        //mark the room as stepped into
+        this.Maze[x][y].winnableChecked = true;
+
         //------------------------
             //BASE CASE (successful)
         //------------------------
@@ -47,25 +51,25 @@ public class Maze {
         }
 
         if(x + 1 <= dimX) {
-            if(!this.Maze[x + 1][y].isLocked) {
+            if(!this.Maze[x + 1][y].isLocked && this.Maze[x + 1][y].winnableChecked == false) {
                 x++;
                 return isWinnable(x, y);
             }
         }
         if(y + 1 <= dimY) {
-            if(!this.Maze[x][y + 1].isLocked) {
+            if(!this.Maze[x][y + 1].isLocked && this.Maze[x][y + 1].winnableChecked == false) {
                 y++;
                 return isWinnable(x, y);
             }
         }
         if(x - 1 >= 0) {
-            if(!this.Maze[x - 1][y].isLocked) {
+            if(!this.Maze[x - 1][y].isLocked && this.Maze[x - 1][y].winnableChecked == false) {
                 x--;
                 return isWinnable(x, y);
             }
         }
         if(y - 1 >= 0) {
-            if(!this.Maze[x][y - 1].isLocked) {
+            if(!this.Maze[x][y - 1].isLocked && this.Maze[x][y - 1].winnableChecked == false) {
                 y--;
                 return isWinnable(x, y);
             }
@@ -73,10 +77,17 @@ public class Maze {
 
         //This return statement will only be reached once all other options fail.
         //Consider it a 2nd base case, but for failure.
+
         return false;
     }
-    protected void setEntryUnlocked() {
-
+    //this is called from checkWinnable.
+    //resets the winnableChecked tag on each room.
+    protected void clean() {
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                this.Maze[i][j].winnableChecked = false;
+            }
+        }
     }
     public void setDatabase(QuestionDatabase qdb) {
         this.database = qdb;

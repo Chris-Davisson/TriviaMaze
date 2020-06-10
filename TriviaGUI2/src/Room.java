@@ -8,7 +8,7 @@ public class Room {
     Boolean isLocked;
     Boolean exit;
     int x,y;
-
+    boolean winnableChecked; //used only by isWinnable in the maze structure.
     public Room(int x,int y){
         this.x=x;
         this.y=y;
@@ -16,6 +16,7 @@ public class Room {
         this.exit = false;
         this.Question = "Your journey begins! Select a room to proceed"; //default text for empty rooms
         this.A1 = " "; this.A2 = " "; this.A3 = " "; this.A4 = " ";
+        this.winnableChecked = false;
     }
     public void setLocked() {
         this.isLocked = true;

@@ -571,6 +571,7 @@ public class TriviaGUI extends  JFrame {
                 if(!this.GamePlay.checkWinnable()) {
                     GameOver();
                 }
+
             }
 
         }else if(action == answerRadioButton1){
