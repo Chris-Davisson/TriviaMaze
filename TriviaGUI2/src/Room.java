@@ -27,35 +27,6 @@ public class Room {
 
         return true;
     }
-    //I only commented this out becasue our answer will be an integer input.
-    //feel free to uncomment it, and delete mine if this works better.
-
-//    public boolean checkAnswer(String response){
-//        switch (this.CorrectAnswer){
-//            case 1:
-//                if(this.A1.equals(response)) {
-//                    isOpen=true;
-//                    return true;
-//                }
-//            case 2:
-//                if(this.A2.equals(response)) {
-//                    isOpen=true;
-//                    return true;
-//                }
-//            case 3:
-//                if(this.A3.equals(response)) {
-//                    isOpen=true;
-//                    return true;
-//                }
-//            case 4:
-//                if(this.A4.equals(response)) {
-//                    isOpen=true;
-//                    return true;
-//                }
-//        }
-//        isLocked=false;
-//        return false;
-//    }
     public boolean checkAnswer(int answer) {
         if(this.CorrectAnswer == answer) {
             return true;

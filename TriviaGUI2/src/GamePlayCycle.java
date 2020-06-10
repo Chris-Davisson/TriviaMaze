@@ -36,12 +36,14 @@ public class GamePlayCycle {
     }
     //This is called when the submit button is pressed.
     //Checks for if the answer is correct or not. If it is correct, it moves.
-    protected void submit(int x, int y, int playerAnswer) {
+    protected boolean submit(int x, int y, int playerAnswer) {
         if(this.maze.Maze[x][y].checkAnswer(playerAnswer)){
             move(x, y);
+            return true;
         }
         else {
             this.maze.Maze[x][y].isLocked = true;
+            return false;
         }
     }
     //Moves the player and the bunny icon. (for some reason not loading atm)

@@ -15,6 +15,7 @@ public class TriviaGUI extends  JFrame {
     private int potentialMoveLocationX = 0 , potentialMoveLocationY = 0;
     private int playerAnswer = 0;
     private int correctAnswer;
+    private int lastPressed;
     final private Icon playerIcon = new ImageIcon("Killer_Rabbit.png");
     private GamePlayCycle GamePlay;
 
@@ -349,103 +350,173 @@ public class TriviaGUI extends  JFrame {
         Object action = e.getSource();
 
         if(action == button1){
+            lastPressed = 1;
             potentialMoveLocationX = 0;
             potentialMoveLocationY = 3;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button2){
+            lastPressed = 2;
             potentialMoveLocationX = 1;
             potentialMoveLocationY = 3;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button3){
+            lastPressed = 3;
             potentialMoveLocationX = 2;
             potentialMoveLocationY =3;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button4){
+            lastPressed = 4;
             potentialMoveLocationX = 3;
             potentialMoveLocationY = 3;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button5){
+            lastPressed = 5;
             potentialMoveLocationX = 0;
             potentialMoveLocationY = 2;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button6){
+            lastPressed = 6;
             potentialMoveLocationX = 1;
             potentialMoveLocationY = 2;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button7){
+            lastPressed = 7;
             potentialMoveLocationX = 2;
             potentialMoveLocationY = 2;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button8){
+            lastPressed = 8;
             potentialMoveLocationX = 3;
             potentialMoveLocationY = 2;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button9){
+            lastPressed = 9;
             potentialMoveLocationX = 0;
             potentialMoveLocationY = 1;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button10){
+            lastPressed = 10;
             potentialMoveLocationX = 1;
             potentialMoveLocationY = 1;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button11){
+            lastPressed = 11;
             potentialMoveLocationX = 2;
             potentialMoveLocationY = 1;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button12){
+            lastPressed = 12;
             potentialMoveLocationX = 3;
             potentialMoveLocationY = 1;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button13){
+            lastPressed = 13;
             potentialMoveLocationX = 0;
             potentialMoveLocationY = 0;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button14){
+            lastPressed = 14;
             potentialMoveLocationX = 1;
             potentialMoveLocationY = 0;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button15){
+            lastPressed = 15;
             potentialMoveLocationX = 2;
             potentialMoveLocationY = 0;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button16){
+            lastPressed = 15;
             potentialMoveLocationX = 3;
             potentialMoveLocationY = 0;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
             //f(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == submit){
-            this.GamePlay.submit(potentialMoveLocationX, potentialMoveLocationY, playerAnswer);
+            boolean submission = this.GamePlay.submit(potentialMoveLocationX, potentialMoveLocationY, playerAnswer);
+
+            if(submission == false) {
+                switch(lastPressed) {
+                    case 1:
+                        button1.setEnabled(false);
+                        break;
+                    case 2:
+                        button2.setEnabled(false);
+                        break;
+                    case 3:
+                        button3.setEnabled(false);
+                        break;
+                    case 4:
+                        button4.setEnabled(false);
+                        break;
+                    case 5:
+                        button5.setEnabled(false);
+                        break;
+                    case 6:
+                        button6.setEnabled(false);
+                        break;
+                    case 7:
+                        button7.setEnabled(false);
+                        break;
+                    case 8:
+                        button8.setEnabled(false);
+                        break;
+                    case 9:
+                        button9.setEnabled(false);
+                        break;
+                    case 10:
+                        button10.setEnabled(false);
+                        break;
+                    case 11:
+                        button11.setEnabled(false);
+                        break;
+                    case 12:
+                        button12.setEnabled(false);
+                        break;
+                    case 13:
+                        button13.setEnabled(false);
+                        break;
+                    case 14:
+                        button14.setEnabled(false);
+                        break;
+                    case 15:
+                        button15.setEnabled(false);
+                        break;
+                    case 16:
+                        button16.setEnabled(false);
+                        break;
+                }
+
+            }
 
         }else if(action == answerRadioButton1){
             playerAnswer = 1;

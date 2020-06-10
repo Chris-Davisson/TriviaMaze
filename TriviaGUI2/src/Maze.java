@@ -102,6 +102,9 @@ public class Maze {
         //Consider it a 2nd base case, but for failure.
         return false;
     }
+    protected void setEntryUnlocked() {
+
+    }
     public void setDatabase(QuestionDatabase qdb) {
         this.database = qdb;
     }
