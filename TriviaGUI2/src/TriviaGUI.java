@@ -333,6 +333,9 @@ public class TriviaGUI extends  JFrame {
                 if(!GamePlay.getLocked(i, j)) {
                     buttHolder[i][j].setVisible(false);
                 }
+                if(i == 3 && j == 3) {
+                    buttHolder[i][j].setEnabled(false);
+                }
             }
         }
         //Now draw adjaccent rooms
@@ -340,15 +343,27 @@ public class TriviaGUI extends  JFrame {
         buttHolder[3][3].setVisible(true);
         if(x <= 2) {
             buttHolder[x + 1][y].setVisible(true);
+            if(x + 1 == 3 && y == 3) {
+                buttHolder[x + 1][y].setEnabled(true);
+            }
         }
         if(y <= 2) {
             buttHolder[x][y + 1].setVisible(true);
+            if(x == 3 && y + 1 == 3) {
+                buttHolder[x + 1][y].setEnabled(true);
+            }
         }
         if(x >= 1) {
             buttHolder[x - 1][y].setVisible(true);
+            if(x - 1 == 3 && y == 3) {
+                buttHolder[x + 1][y].setEnabled(true);
+            }
         }
         if(y >= 1) {
             buttHolder[x][y - 1].setVisible(true);
+            if(x == 3 && y - 1 == 3) {
+                buttHolder[x + 1][y].setEnabled(true);
+            }
         }
     }
 
