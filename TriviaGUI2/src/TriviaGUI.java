@@ -610,8 +610,8 @@ public class TriviaGUI extends  JFrame {
 //        return false;
 //    }
     protected void GameOver() {
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
                 buttHolder[i][j].setEnabled(false);
             }
         }
@@ -640,8 +640,8 @@ public class TriviaGUI extends  JFrame {
     }
 
     protected void gameIsWon(){
-        for(int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
                 buttHolder[i][j].setEnabled(false);
             }
         }
