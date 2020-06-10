@@ -516,6 +516,9 @@ public class TriviaGUI extends  JFrame {
                         break;
                 }
 
+
+                this.potentialMoveLocationY = 0;
+                this.potentialMoveLocationX = 0;
             }
 
         }else if(action == answerRadioButton1){

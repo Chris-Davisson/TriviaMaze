@@ -27,7 +27,7 @@ public class Maze {
                     int tempid = r.nextInt((this.database.maxQuestions - 1)) + 1;     //random number for random question id. (between 1 and the max amount)
                     Object[] tempQuestion = this.database.getEntry(tempid);          //Acquire the random question.
 
-                    this.Maze[i][j].setQuestion((String) tempQuestion[0], (String) tempQuestion[1], (String) tempQuestion[2],
+                    this.Maze[i][j].setQuestionData((String) tempQuestion[0], (String) tempQuestion[1], (String) tempQuestion[2],
                             (String) tempQuestion[3], (String) tempQuestion[4], (int) tempQuestion[5]);
                 }
             }
