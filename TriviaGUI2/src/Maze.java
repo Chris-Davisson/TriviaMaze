@@ -58,13 +58,6 @@ public class Maze {
                 return isWinnable(x, y);
             }
         }
-        if(x + 1 <= dimX && y + 1 <= dimY) {
-            if(!this.Maze[x + 1][y + 1].isLocked) {
-                x++;
-                y++;
-                return isWinnable(x, y);
-            }
-        }
         if(x - 1 >= 0) {
             if(!this.Maze[x - 1][y].isLocked) {
                 x--;
@@ -77,27 +70,7 @@ public class Maze {
                 return isWinnable(x, y);
             }
         }
-        if(x - 1 >= 0 && y - 1 >= 0) {
-            if(!this.Maze[x - 1][y - 1].isLocked) {
-                x--;
-                y--;
-                return isWinnable(x, y);
-            }
-        }
-        if(x - 1 >= 0 && y + 1 <= dimY) {
-            if(!this.Maze[x - 1][y + 1].isLocked) {
-                x--;
-                y++;
-                return isWinnable(x, y);
-            }
-        }
-        if(x + 1 <= dimX && y - 1 >= 0) {
-            if(!this.Maze[x + 1][y - 1].isLocked) {
-                x++;
-                y--;
-                return isWinnable(x, y);
-            }
-        }
+
         //This return statement will only be reached once all other options fail.
         //Consider it a 2nd base case, but for failure.
         return false;

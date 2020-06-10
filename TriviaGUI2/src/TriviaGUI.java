@@ -16,7 +16,9 @@ public class TriviaGUI extends  JFrame {
     private int playerAnswer = 0;
     private int correctAnswer;
     private int lastPressed;
-    final private Icon playerIcon = new ImageIcon("Killer_Rabbit.png");
+    final private Icon playerIcon = new ImageIcon("TriviaGUI2\\resources\\Killer_Rabbit.png");
+    final private Icon lockIcon = new ImageIcon("TriviaGUI2\\resources\\icons8-lock-64.png");
+    final private Icon roomBkg = new ImageIcon("TriviaGUI2\\resources\\room.jpg");
     private GamePlayCycle GamePlay;
 
 
@@ -38,6 +40,7 @@ public class TriviaGUI extends  JFrame {
     private JButton button16;
     private JButton[] buttonHolder;// = {button1,button2,button3,button4,button5,button6,button7,button8,button9,button10,button10,button11,button12,button13,button14,button15,button16};
     private JButton[][] buttHolder = {{button13,button9,button5,button1},{button14,button10,button6,button2},{button15,button11,button7,button3},{button16,button12,button8,button4}};
+        //lmao butt
     private JButton submit;
 
 
@@ -81,8 +84,6 @@ public class TriviaGUI extends  JFrame {
         menuBar.add(getHelpMenu());
         this.setJMenuBar(menuBar);
 
-
-
         //Making and hardcodding the locations of everything
         makeQuestionAndAnswerPlace(c);
         buttHolder = new JButton[][] {{button13,button9,button5,button1},{button14,button10,button6,button2},{button15,button11,button7,button3},{button16,button12,button8,button4}};
@@ -104,112 +105,112 @@ public class TriviaGUI extends  JFrame {
 
         Font f = new Font(font , Font.PLAIN , 16);
 
-        button1 = new JButton("1");
+        button1 = new JButton();
         button1.setSize(100, 100);
         button1.setLocation(0,425);
         button1.setFont(f);
         button1.addActionListener(this::actionPerformed);
         c.add(button1);
 
-        button2 = new JButton("2");
+        button2 = new JButton();
         button2.setSize(100, 100);
         button2.setLocation(100,425);
         button2.setFont(f);
         button2.addActionListener(this::actionPerformed);
         c.add(button2);
 
-        button3 = new JButton("3");
+        button3 = new JButton();
         button3.setSize(100, 100);
         button3.setLocation(200,425);
         button3.setFont(f);
         button3.addActionListener(this::actionPerformed);
         c.add(button3);
 
-        button4 = new JButton("4");
+        button4 = new JButton();
         button4.setSize(100, 100);
         button4.setLocation(300,425);
         button4.setFont(f);
         button4.addActionListener(this::actionPerformed);
         c.add(button4);
 
-        button5 = new JButton("5");
+        button5 = new JButton();
         button5.setSize(100, 100);
         button5.setLocation(0,325);
         button5.setFont(f);
         button5.addActionListener(this::actionPerformed);
         c.add(button5);
 
-        button6 = new JButton("6");
+        button6 = new JButton();
         button6.setSize(100, 100);
         button6.setLocation(100,325);
         button6.setFont(f);
         button6.addActionListener(this::actionPerformed);
         c.add(button6);
 
-        button7 = new JButton("7");
+        button7 = new JButton();
         button7.setSize(100, 100);
         button7.setLocation(200,325);
         button7.setFont(f);
         button7.addActionListener(this::actionPerformed);
         c.add(button7);
 
-        button8 = new JButton("8");
+        button8 = new JButton();
         button8.setSize(100, 100);
         button8.setLocation(300,325);
         button8.setFont(f);
         button8.addActionListener(this::actionPerformed);
         c.add(button8);
 
-        button9 = new JButton("9");
+        button9 = new JButton();
         button9.setSize(100, 100);
         button9.setLocation(0,225);
         button9.setFont(f);
         button9.addActionListener(this::actionPerformed);
         c.add(button9);
 
-        button10 = new JButton("10");
+        button10 = new JButton();
         button10.setSize(100, 100);
         button10.setLocation(100,225);
         button10.setFont(f);
         button10.addActionListener(this::actionPerformed);
         c.add(button10);
 
-        button11 = new JButton("11");
+        button11 = new JButton();
         button11.setSize(100, 100);
         button11.setLocation(200,225);
         button11.setFont(f);
         button11.addActionListener(this::actionPerformed);
         c.add(button11);
 
-        button12 = new JButton("12");
+        button12 = new JButton();
         button12.setSize(100, 100);
         button12.setLocation(300,225);
         button12.setFont(f);
         button12.addActionListener(this::actionPerformed);
         c.add(button12);
 
-        button13 = new JButton(playerIcon);
+        button13 = new JButton();
         button13.setSize(100, 100);
         button13.setLocation(0,125);
         button13.setFont(f);
         button13.addActionListener(this::actionPerformed);
         c.add(button13);
 
-        button14 = new JButton("14");
+        button14 = new JButton();
         button14.setSize(100, 100);
         button14.setLocation(100,125);
         button14.setFont(f);
         button14.addActionListener(this::actionPerformed);
         c.add(button14);
 
-        button15 = new JButton("15");
+        button15 = new JButton();
         button15.setSize(100, 100);
         button15.setLocation(200,125);
         button15.setFont(f);
         button15.addActionListener(this::actionPerformed);
         c.add(button15);
 
-        button16 = new JButton("16");
+        button16 = new JButton();
         button16.setSize(100, 100);
         button16.setLocation(300,125);
         button16.setFont(f);
@@ -301,10 +302,11 @@ public class TriviaGUI extends  JFrame {
 
     }
 
-
+    //Called from GamePlayCycle. Displays the question.
     protected void setQuestion(String question) {
         questionTextArea.setText(question);
     }
+    //Called from GamePlayCycle. Displays the possible answers.
     protected void setAnswers(String answer1, String answer2, String answer3, String answer4){
         answerTextArea1.setText(answer1);
         answerTextArea2.setText(answer2);
@@ -316,6 +318,34 @@ public class TriviaGUI extends  JFrame {
             else if(correctAnswer == 2) answerTextArea2.setBackground(Color.YELLOW);
             else if(correctAnswer == 3) answerTextArea3.setBackground(Color.YELLOW);
             else if(correctAnswer == 4) answerTextArea4.setBackground(Color.YELLOW);
+        }
+    }
+    //This will hide all rooms that are NOT options available to the player based on
+    //the current room they are in.
+    protected void setPlayerOptions(int x, int y) {
+        //for loop to hide all rooms
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                //keep locked rooms visible
+                if(!GamePlay.getLocked(i, j)) {
+                    buttHolder[i][j].setVisible(false);
+                }
+            }
+        }
+        //Now draw adjaccent rooms
+        buttHolder[x][y].setVisible(true);
+        buttHolder[3][3].setVisible(true);
+        if(x <= 2) {
+            buttHolder[x + 1][y].setVisible(true);
+        }
+        if(y <= 2) {
+            buttHolder[x][y + 1].setVisible(true);
+        }
+        if(x >= 1) {
+            buttHolder[x - 1][y].setVisible(true);
+        }
+        if(y >= 1) {
+            buttHolder[x][y - 1].setVisible(true);
         }
     }
     //    protected boolean questionDisplay(int x , int y){
@@ -354,171 +384,193 @@ public class TriviaGUI extends  JFrame {
             potentialMoveLocationX = 0;
             potentialMoveLocationY = 3;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button2){
             lastPressed = 2;
             potentialMoveLocationX = 1;
             potentialMoveLocationY = 3;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button3){
             lastPressed = 3;
             potentialMoveLocationX = 2;
             potentialMoveLocationY =3;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button4){
             lastPressed = 4;
             potentialMoveLocationX = 3;
             potentialMoveLocationY = 3;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button5){
             lastPressed = 5;
             potentialMoveLocationX = 0;
             potentialMoveLocationY = 2;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button6){
             lastPressed = 6;
             potentialMoveLocationX = 1;
             potentialMoveLocationY = 2;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button7){
             lastPressed = 7;
             potentialMoveLocationX = 2;
             potentialMoveLocationY = 2;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button8){
             lastPressed = 8;
             potentialMoveLocationX = 3;
             potentialMoveLocationY = 2;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button9){
             lastPressed = 9;
             potentialMoveLocationX = 0;
             potentialMoveLocationY = 1;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button10){
             lastPressed = 10;
             potentialMoveLocationX = 1;
             potentialMoveLocationY = 1;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button11){
             lastPressed = 11;
             potentialMoveLocationX = 2;
             potentialMoveLocationY = 1;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button12){
             lastPressed = 12;
             potentialMoveLocationX = 3;
             potentialMoveLocationY = 1;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button13){
             lastPressed = 13;
             potentialMoveLocationX = 0;
             potentialMoveLocationY = 0;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button14){
             lastPressed = 14;
             potentialMoveLocationX = 1;
             potentialMoveLocationY = 0;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button15){
             lastPressed = 15;
             potentialMoveLocationX = 2;
             potentialMoveLocationY = 0;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button16){
-            lastPressed = 15;
+            lastPressed = 16;
             potentialMoveLocationX = 3;
             potentialMoveLocationY = 0;
             this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
-            //f(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
+
+            //when the submit button is pressed
         }else if(action == submit){
+            //check that the correct answer is selected or not
             boolean submission = this.GamePlay.submit(potentialMoveLocationX, potentialMoveLocationY, playerAnswer);
 
+            //if the player is wrong
             if(submission == false) {
                 switch(lastPressed) {
                     case 1:
+                        button1.setDisabledIcon(lockIcon);
+                        button1.setBackground(Color.DARK_GRAY);
                         button1.setEnabled(false);
                         break;
                     case 2:
+                        button2.setDisabledIcon(lockIcon);
+                        button2.setBackground(Color.DARK_GRAY);
                         button2.setEnabled(false);
                         break;
                     case 3:
+                        button3.setDisabledIcon(lockIcon);
+                        button3.setBackground(Color.DARK_GRAY);
                         button3.setEnabled(false);
                         break;
                     case 4:
+                        button4.setDisabledIcon(lockIcon);
+                        button4.setBackground(Color.DARK_GRAY);
                         button4.setEnabled(false);
                         break;
                     case 5:
+                        button5.setDisabledIcon(lockIcon);
+                        button5.setBackground(Color.DARK_GRAY);
                         button5.setEnabled(false);
                         break;
                     case 6:
+                        button6.setDisabledIcon(lockIcon);
+                        button6.setBackground(Color.DARK_GRAY);
                         button6.setEnabled(false);
                         break;
                     case 7:
+                        button7.setDisabledIcon(lockIcon);
+                        button7.setBackground(Color.DARK_GRAY);
                         button7.setEnabled(false);
                         break;
                     case 8:
+                        button8.setDisabledIcon(lockIcon);
+                        button8.setBackground(Color.DARK_GRAY);
                         button8.setEnabled(false);
                         break;
                     case 9:
+                        button9.setDisabledIcon(lockIcon);
+                        button9.setBackground(Color.DARK_GRAY);
                         button9.setEnabled(false);
                         break;
                     case 10:
+                        button10.setDisabledIcon(lockIcon);
+                        button10.setBackground(Color.DARK_GRAY);
                         button10.setEnabled(false);
                         break;
                     case 11:
+                        button11.setDisabledIcon(lockIcon);
+                        button11.setBackground(Color.DARK_GRAY);
                         button11.setEnabled(false);
                         break;
                     case 12:
+                        button12.setDisabledIcon(lockIcon);
+                        button12.setBackground(Color.DARK_GRAY);
                         button12.setEnabled(false);
                         break;
                     case 13:
+                        button13.setDisabledIcon(lockIcon);
+                        button13.setBackground(Color.DARK_GRAY);
                         button13.setEnabled(false);
                         break;
                     case 14:
+                        button14.setDisabledIcon(lockIcon);
+                        button14.setBackground(Color.DARK_GRAY);
                         button14.setEnabled(false);
                         break;
                     case 15:
+                        button15.setDisabledIcon(lockIcon);
+                        button15.setBackground(Color.DARK_GRAY);
                         button15.setEnabled(false);
                         break;
                     case 16:
+                        button16.setDisabledIcon(lockIcon);
+                        button16.setBackground(Color.DARK_GRAY);
                         button16.setEnabled(false);
                         break;
                 }
-
-
                 this.potentialMoveLocationY = 0;
                 this.potentialMoveLocationX = 0;
+                //after locking the room, check if the game is still beatable
+                if(!this.GamePlay.checkWinnable()) {
+                    GameOver();
+                }
             }
 
         }else if(action == answerRadioButton1){
@@ -533,7 +585,6 @@ public class TriviaGUI extends  JFrame {
         else{
             System.out.println("Error message: Something went wrong, IDK what.");
         }
-//        setBunnyLocation();
         if(playerLocationX == 3 && playerLocationY == 3)
             gameIsWon();
 
@@ -557,7 +608,14 @@ public class TriviaGUI extends  JFrame {
 //        }
 //        return false;
 //    }
-
+    protected void GameOver() {
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                buttHolder[i][j].setEnabled(false);
+            }
+        }
+        resultsTextArea.setText("Game Over!");
+    }
     protected void setBunnyLocation(int x, int y){
         BufferedImage invisibleIcon = new BufferedImage(button1.getWidth(),button1.getHeight(),BufferedImage.TYPE_4BYTE_ABGR);
         ImageIcon invis = new ImageIcon(invisibleIcon);
@@ -580,7 +638,12 @@ public class TriviaGUI extends  JFrame {
         buttHolder[x][y].setIcon(playerIcon);
     }
 
-    private void gameIsWon(){
+    protected void gameIsWon(){
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                buttHolder[i][j].setEnabled(false);
+            }
+        }
         resultsTextArea.setText("You Win!");
     }
 

@@ -29,8 +29,8 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/TriviaGUI2/sqlite-jdbc-3.30.1.jar!/" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/TriviaGUI2/resources" />
+    <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -62,46 +62,46 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="666" y="261" key="FileChooserDialogImpl" timestamp="1591741074315">
+    <state x="666" y="261" key="FileChooserDialogImpl" timestamp="1591773580238">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="666" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591741074315" />
-    <state width="1877" height="150" key="GridCell.Tab.0.bottom" timestamp="1591757587420">
+    <state x="666" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591773580238" />
+    <state width="1877" height="235" key="GridCell.Tab.0.bottom" timestamp="1591782169579">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="150" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591757587420" />
-    <state width="1877" height="150" key="GridCell.Tab.0.center" timestamp="1591757587420">
+    <state width="1877" height="235" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591782169579" />
+    <state width="1877" height="235" key="GridCell.Tab.0.center" timestamp="1591782169578">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="150" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591757587420" />
-    <state width="1877" height="150" key="GridCell.Tab.0.left" timestamp="1591757587420">
+    <state width="1877" height="235" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591782169578" />
+    <state width="1877" height="235" key="GridCell.Tab.0.left" timestamp="1591782169578">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="150" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591757587420" />
-    <state width="1877" height="150" key="GridCell.Tab.0.right" timestamp="1591757587420">
+    <state width="1877" height="235" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591782169578" />
+    <state width="1877" height="235" key="GridCell.Tab.0.right" timestamp="1591782169579">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="150" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591757587420" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1591753916054">
+    <state width="1877" height="235" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591782169579" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1591782167809">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591753916054" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1591753916054">
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591782167809" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1591782167809">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591753916054" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1591753916054">
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591782167809" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1591782167809">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591753916054" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1591753916054">
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591782167809" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1591782167809">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591753916054" />
-    <state x="440" y="94" key="SettingsEditor" timestamp="1591741080222">
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591782167809" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1591773637565">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591741080222" />
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591773637565" />
     <state x="664" y="411" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1591741067222">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -111,9 +111,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/TriviaGUI2/src/TriviaGUI.java</url>
-          <line>351</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/TriviaGUI2/src/Maze.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
