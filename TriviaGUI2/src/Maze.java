@@ -1,10 +1,11 @@
 import java.util.Random;
 
 public class Maze {
-
+    final int MAZE_X_DIMENSION = 4;
+    final int MAZE_Y_DIMENSION = 4;
+    final int dimX = MAZE_X_DIMENSION - 1;
+    final int dimY = MAZE_Y_DIMENSION - 1;
     Room[][] Maze;
-    int CharX, CharY;
-    int dimX; int dimY; //dimensions
     QuestionDatabase database;
     Random r;
 
@@ -12,23 +13,29 @@ public class Maze {
         this.database = qdb;
         r = new Random();
         //Might not hard code this in the future.
-        this.Maze = new Room[3][3];
-        this.dimX = 2;  //x dimension (0 based indexing)
-        this.dimY = 2;  //y dimension (0 based indexing)
-        //Character Location
-        this.CharX = 0; this.CharY = 0;
+        this.Maze = new Room[MAZE_X_DIMENSION][MAZE_Y_DIMENSION];
 
-        for(int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
+        for(int i = 0; i < MAZE_X_DIMENSION; i++){
+            for(int j = 0; j < MAZE_Y_DIMENSION; j++){
+
                 this.Maze[i][j] = new Room(i, j);
-                int tempid = r.nextInt(this.database.maxQuestions);     //random number for random question id.
-                Object[] tempQuestion = this.database.getEntry(tempid); //Acquire the random question.
 
-                this.Maze[i][j].setQuestion((String)tempQuestion[0], (String)tempQuestion[1], (String)tempQuestion[2],
-                                            (String)tempQuestion[3], (String)tempQuestion[4], (int)tempQuestion[5]);
+                if(i == 0 && j == 0) {
+                    //create an empty room. This will be the starting room.
+                }
+                else {
+                    int tempid = r.nextInt((this.database.maxQuestions - 1)) + 1;     //random number for random question id. (between 1 and the max amount)
+                    Object[] tempQuestion = this.database.getEntry(tempid);          //Acquire the random question.
+
+                    this.Maze[i][j].setQuestion((String) tempQuestion[0], (String) tempQuestion[1], (String) tempQuestion[2],
+                            (String) tempQuestion[3], (String) tempQuestion[4], (int) tempQuestion[5]);
+                }
             }
         }
-        this.Maze[2][2].exit = true;
+        this.Maze[3][3].exit = true;
+    }
+    public String[] getRoomData(int x, int y) {
+        return this.Maze[x][y].getQuestion();
     }
     //Returns true if the game is still winnable
     public boolean isWinnable(int x, int y) {
@@ -97,9 +104,5 @@ public class Maze {
     }
     public void setDatabase(QuestionDatabase qdb) {
         this.database = qdb;
-    }
-    public void setCharLocation(int x, int y) {
-        this.CharX = x;
-        this.CharY = y;
     }
 }

@@ -8,16 +8,15 @@ public class TriviaGUI extends  JFrame {
 
 
     private Container c;
-    private Maze maze;
     private JLabel title;
 
 
-    private int playerLocationX  = 0, playerLocationY = 0;
+    private int playerLocationX, playerLocationY;
     private int potentialMoveLocationX = 0 , potentialMoveLocationY = 0;
     private int playerAnswer = 0;
     private int correctAnswer;
-    private Icon playerIcon = new ImageIcon("Killer_Rabbit.png");
-
+    final private Icon playerIcon = new ImageIcon("Killer_Rabbit.png");
+    private GamePlayCycle GamePlay;
 
 
     private JButton button1;
@@ -68,16 +67,14 @@ public class TriviaGUI extends  JFrame {
     private String[] fontsHolder;
     private String font = "Arial";
 
-    public TriviaGUI(Maze maze){
+    public TriviaGUI(GamePlayCycle gameplay){
         super("Trivia Maze");
         setBounds(300, 90, 900, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         c = getContentPane();
         c.setLayout(null);
-
-        this.maze = maze;
-
+        this.GamePlay = gameplay;
         //menu stuff
         menuBar.add(getFileMenu());
         menuBar.add(getHelpMenu());
@@ -303,127 +300,152 @@ public class TriviaGUI extends  JFrame {
 
     }
 
-    private boolean questionDisplay(int x , int y){
-        if(!isValidLocation(x,y)) return false;
-        setQuestionAndAnswers(x,y);
-        return true;
+
+    protected void setQuestion(String question) {
+        questionTextArea.setText(question);
     }
+    protected void setAnswers(String answer1, String answer2, String answer3, String answer4){
+        answerTextArea1.setText(answer1);
+        answerTextArea2.setText(answer2);
+        answerTextArea3.setText(answer3);
+        answerTextArea4.setText(answer4);
 
-    private void setQuestionAndAnswers(int x , int y){
-        questionTextArea.setText(maze.Maze[x][y].Question);
-        answerTextArea1.setText(maze.Maze[x][y].A1);
-        answerTextArea2.setText(maze.Maze[x][y].A2);
-        answerTextArea3.setText(maze.Maze[x][y].A3);
-        answerTextArea4.setText(maze.Maze[x][y].A4);
-
-        correctAnswer = maze.Maze[x][y].CorrectAnswer;
-        answerTextArea1.setBackground(Color.WHITE);
-        answerTextArea2.setBackground(Color.WHITE);
-        answerTextArea3.setBackground(Color.WHITE);
-        answerTextArea4.setBackground(Color.WHITE);
-
-
-        if(highlightCorrectAnswer == true){
+        if(highlightCorrectAnswer) {
             if(correctAnswer == 1 ) answerTextArea1.setBackground(Color.YELLOW);
             else if(correctAnswer == 2) answerTextArea2.setBackground(Color.YELLOW);
             else if(correctAnswer == 3) answerTextArea3.setBackground(Color.YELLOW);
             else if(correctAnswer == 4) answerTextArea4.setBackground(Color.YELLOW);
         }
     }
+    //    protected boolean questionDisplay(int x , int y){
+//        if(!isValidLocation(x,y)) return false;
+//        setQuestionAndAnswers(x,y);
+//        return true;
+//    }
+//    private void setQuestionAndAnswers(int x , int y){
+//        questionTextArea.setText(maze.Maze[x][y].Question);
+//        answerTextArea1.setText(maze.Maze[x][y].A1);
+//        answerTextArea2.setText(maze.Maze[x][y].A2);
+//        answerTextArea3.setText(maze.Maze[x][y].A3);
+//        answerTextArea4.setText(maze.Maze[x][y].A4);
+//
+//        correctAnswer = maze.Maze[x][y].CorrectAnswer;
+//        answerTextArea1.setBackground(Color.WHITE);
+//        answerTextArea2.setBackground(Color.WHITE);
+//        answerTextArea3.setBackground(Color.WHITE);
+//        answerTextArea4.setBackground(Color.WHITE);
+//
+//
+//        if(highlightCorrectAnswer == true){
+//            if(correctAnswer == 1 ) answerTextArea1.setBackground(Color.YELLOW);
+//            else if(correctAnswer == 2) answerTextArea2.setBackground(Color.YELLOW);
+//            else if(correctAnswer == 3) answerTextArea3.setBackground(Color.YELLOW);
+//            else if(correctAnswer == 4) answerTextArea4.setBackground(Color.YELLOW);
+//        }
+//    }
 
     //Button Action handlers. Code for when buttons are pressed goes here
     public void actionPerformed(ActionEvent e){
         Object action = e.getSource();
 
-
         if(action == button1){
             potentialMoveLocationX = 0;
             potentialMoveLocationY = 3;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button2){
             potentialMoveLocationX = 1;
             potentialMoveLocationY = 3;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button3){
             potentialMoveLocationX = 2;
             potentialMoveLocationY =3;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button4){
             potentialMoveLocationX = 3;
             potentialMoveLocationY = 3;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button5){
             potentialMoveLocationX = 0;
             potentialMoveLocationY = 2;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button6){
             potentialMoveLocationX = 1;
             potentialMoveLocationY = 2;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button7){
             potentialMoveLocationX = 2;
             potentialMoveLocationY = 2;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button8){
             potentialMoveLocationX = 3;
             potentialMoveLocationY = 2;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button9){
             potentialMoveLocationX = 0;
             potentialMoveLocationY = 1;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button10){
             potentialMoveLocationX = 1;
             potentialMoveLocationY = 1;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button11){
             potentialMoveLocationX = 2;
             potentialMoveLocationY = 1;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button12){
             potentialMoveLocationX = 3;
             potentialMoveLocationY = 1;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button13){
             potentialMoveLocationX = 0;
             potentialMoveLocationY = 0;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button14){
-
             potentialMoveLocationX = 1;
             potentialMoveLocationY = 0;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button15){
             potentialMoveLocationX = 2;
             potentialMoveLocationY = 0;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == button16){
             potentialMoveLocationX = 3;
             potentialMoveLocationY = 0;
-            if(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
+            this.GamePlay.roomEntry(potentialMoveLocationX,potentialMoveLocationY);
+            //f(!questionDisplay(potentialMoveLocationX , potentialMoveLocationY)) resultsTextArea.setText("Answer The Question");
 
         }else if(action == submit){
-            if(playerAnswer == maze.Maze[potentialMoveLocationX][potentialMoveLocationY].CorrectAnswer){
-                playerAnswerIsCorrect = true;
-                playerLocationX = potentialMoveLocationX;
-                playerLocationY = potentialMoveLocationY;
-            }
-
+            this.GamePlay.submit(potentialMoveLocationX, potentialMoveLocationY, playerAnswer);
 
         }else if(action == answerRadioButton1){
             playerAnswer = 1;
@@ -437,7 +459,7 @@ public class TriviaGUI extends  JFrame {
         else{
             System.out.println("Error message: Something went wrong, IDK what.");
         }
-        setBunnyLocation();
+//        setBunnyLocation();
         if(playerLocationX == 3 && playerLocationY == 3)
             gameIsWon();
 
@@ -447,22 +469,22 @@ public class TriviaGUI extends  JFrame {
     //First check if its a valid move
     //then print the questions and answers
 
-    private boolean isValidLocation(int x , int y){
-        
-        try{
-            return !maze.Maze[x][y].isLocked;
-        }catch (Exception e){
-            return false;
-        }
-    }
-    private boolean isValidHelper(int x , int y){
-        if((x == (playerLocationX - 1) || x == (playerLocationX + 1)) && (y == (playerLocationY - 4) || y == (playerLocationY + 4))){
-            return true;
-        }
-        return false;
-    }
+//    private boolean isValidLocation(int x , int y){
+//
+//        try{
+//            return !maze.Maze[x][y].isLocked;
+//        }catch (Exception e){
+//            return false;
+//        }
+//    }
+//    private boolean isValidHelper(int x , int y){
+//        if((x == (playerLocationX - 1) || x == (playerLocationX + 1)) && (y == (playerLocationY - 4) || y == (playerLocationY + 4))){
+//            return true;
+//        }
+//        return false;
+//    }
 
-    private void setBunnyLocation(){
+    protected void setBunnyLocation(int x, int y){
         BufferedImage invisibleIcon = new BufferedImage(button1.getWidth(),button1.getHeight(),BufferedImage.TYPE_4BYTE_ABGR);
         ImageIcon invis = new ImageIcon(invisibleIcon);
         button1.setIcon(invis);
@@ -481,7 +503,7 @@ public class TriviaGUI extends  JFrame {
         button14.setIcon(invis);
         button15.setIcon(invis);
         button16.setIcon(invis);
-        buttHolder[playerLocationX][playerLocationY].setIcon(playerIcon);
+        buttHolder[x][y].setIcon(playerIcon);
     }
 
     private void gameIsWon(){
@@ -557,8 +579,10 @@ public class TriviaGUI extends  JFrame {
         cheatOption.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 highlightCorrectAnswer = true;
-                correctAnswer = maze.Maze[potentialMoveLocationX][potentialMoveLocationY].CorrectAnswer;
+                correctAnswer = GamePlay.getCorrectAnswer(potentialMoveLocationX, potentialMoveLocationY);
+
                 if(highlightCorrectAnswer == true){
                     if(correctAnswer == 0 ) answerTextArea1.setBackground(Color.YELLOW);
                     else if(correctAnswer == 1) answerTextArea2.setBackground(Color.YELLOW);
